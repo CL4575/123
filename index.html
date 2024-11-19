@@ -1,10 +1,13 @@
 <!DOCTYPE html>
+<!-- Coding By CodingNepal - www.codingnepalweb.com -->
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Sidebar Menu HTML and CSS | CodingNepal</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- Linking Google Font Link For Icons -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -45,7 +48,8 @@
         <a href="#"><span class="material-symbols-outlined"> flag </span>All Reports</a>
       </li>
       <li>
-        <a href="#"><span class="material-symbols-outlined"> notifications_active </span>Notifications</a>
+        <a href="#"><span class="material-symbols-outlined">
+            notifications_active </span>Notifications</a>
       </li>
       <h4>
         <span>Account</span>
@@ -74,7 +78,8 @@
 </body>
 </html>
 <style>
-  @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+  /* Importing Google font - Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
 
 * {
   margin: 0;
@@ -118,83 +123,111 @@ body {
 
 .sidebar .sidebar-header h2 {
   color: #fff;
-  font-size: 20px;
-  margin-left: 10px;
-  display: none;
-}
-
-.sidebar:hover .sidebar-header h2 {
-  display: block;
-}
-
-.sidebar-links {
-  margin-top: 20px;
-  flex: 1;
-  overflow-y: auto;
+  font-size: 1.25rem;
+  font-weight: 600;
+  white-space: nowrap;
+  margin-left: 23px;
 }
 
 .sidebar-links h4 {
   color: #fff;
-  font-size: 14px;
+  font-weight: 500;
+  white-space: nowrap;
   margin: 10px 0;
+  position: relative;
 }
 
-.menu-separator {
+.sidebar-links h4 span {
+  opacity: 0;
+}
+
+.sidebar:hover .sidebar-links h4 span {
+  opacity: 1;
+}
+
+.sidebar-links .menu-separator {
+  position: absolute;
+  left: 0;
+  top: 50%;
   width: 100%;
-  height: 2px;
-  background: #3f4755;
-  margin: 5px 0;
+  height: 1px;
+  transform: scaleX(1);
+  transform: translateY(-50%);
+  background: #4f52ba;
+  transform-origin: right;
+  transition-delay: 0.2s;
 }
 
-.sidebar-links li {
+.sidebar:hover .sidebar-links .menu-separator {
+  transition-delay: 0s;
+  transform: scaleX(0);
+}
+
+.sidebar-links {
   list-style: none;
-  margin: 10px 0;
+  margin-top: 20px;
+  height: 80%;
+  overflow-y: auto;
+  scrollbar-width: none;
 }
 
-.sidebar-links a {
-  text-decoration: none;
-  color: #b8c2cc;
+.sidebar-links::-webkit-scrollbar {
+  display: none;
+}
+
+.sidebar-links li a {
   display: flex;
   align-items: center;
-  padding: 10px;
-  border-radius: 5px;
-  transition: background 0.3s;
+  gap: 0 20px;
+  color: #fff;
+  font-weight: 500;
+  white-space: nowrap;
+  padding: 15px 10px;
+  text-decoration: none;
+  transition: 0.2s ease;
 }
 
-.sidebar-links a:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.sidebar-links a .material-symbols-outlined {
-  font-size: 20px;
-  margin-right: 10px;
+.sidebar-links li a:hover {
+  color: #161a2d;
+  background: #fff;
+  border-radius: 4px;
 }
 
 .user-account {
   margin-top: auto;
+  padding: 12px 10px;
+  margin-left: -10px;
 }
 
 .user-profile {
   display: flex;
   align-items: center;
+  color: #161a2d;
 }
 
 .user-profile img {
-  width: 40px;
+  width: 42px;
   border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.user-profile h3 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.user-profile span {
+  font-size: 0.775rem;
+  font-weight: 600;
 }
 
 .user-detail {
-  color: #fff;
-  margin-left: 10px;
+  margin-left: 23px;
+  white-space: nowrap;
 }
 
-.user-detail h3 {
-  font-size: 16px;
-}
-
-.user-detail span {
-  font-size: 12px;
-  color: #b8c2cc;
+.sidebar:hover .user-account {
+  background: #fff;
+  border-radius: 4px;
 }
 </style>
