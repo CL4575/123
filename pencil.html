@@ -1,9 +1,38 @@
 <center>
-<div style="display: flex; align-items: center;">
-    <h1 style="margin: 0;">Press</h1>
-    <img src="image.png" alt="Image of pencils" style="margin: 0 10px;">
-    <h1 style="margin: 0;">to add # of pencils</h1>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Centered Image and Text</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center; /* Center horizontally */
+            align-items: center;    /* Center vertically */
+            height: 100vh;         /* Full viewport height */
+            margin: 0;             /* Remove default margin */
+        }
+        .flex-container {
+            display: flex;
+            align-items: center;
+        }
+        .flex-container h6 {
+            margin: 0;
+        }
+        .flex-container img {
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="flex-container">
+        <h6>Press</h6>
+        <img src="image.png" alt="Image of pencils">
+        <h6>to add # of pencils</h6>
+    </div>
+</body>
+</html>
 <script src="https://unpkg.com/@lyket/widget@latest/dist/lyket.js?apiKey=pt_5c2712c656151ed3b01fa7ddfa2052"></script>
 <div style="font-size: 50px" data-lyket-type="clap" data-lyket-id="my-first-post"></div>
     </center>
