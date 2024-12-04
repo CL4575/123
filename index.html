@@ -66,7 +66,7 @@
             <div class="user-profile">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7vB-49_BT-dirwttYZaeE_VByjlQ3raVJZg&s" alt="Profile Image" />
               <div class="user-detail">
-            Guest_User
+            Guest_User<span id="randomNumber"></span>
               </div>
             </div>
           </div>
@@ -76,7 +76,23 @@
             function changeIframeSource(url) {
             document.getElementById('myIframe').src = url;
         }
+        // Function to generate a random number
+        function generateRandomNumber() {
+            // Check if a random number is already stored in local storage
+            let randomNumber = localStorage.getItem("randomNumber");
 
+            // If not, generate a new random number and store it
+            if (!randomNumber) {
+                randomNumber = Math.floor(Math.random() * 100) + 1;
+                localStorage.setItem("randomNumber", randomNumber);
+            }
+
+            // Display the random number in the HTML element with id "randomNumber"
+            document.getElementById("randomNumber").innerText = randomNumber;
+        }
+
+        // Call the function when the page loads
+        window.onload = generateRandomNumber;
         </script>
 <style>
 
