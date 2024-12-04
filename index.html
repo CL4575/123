@@ -66,7 +66,7 @@
             <div class="user-profile">
               <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ7vB-49_BT-dirwttYZaeE_VByjlQ3raVJZg&s" alt="Profile Image" />
               <div class="user-detail">
-               hi
+            Guest_User_
               </div>
             </div>
           </div>
@@ -76,6 +76,28 @@
             function changeIframeSource(url) {
             document.getElementById('myIframe').src = url;
         }
+            // Function to generate a unique user number
+function generateUser Number() {
+    return Math.floor(Math.random() * 1000000); // Generates a random number between 0 and 999999
+}
+
+// Function to display the user number
+function displayUser () {
+    const userDetailElement = document.getElementById('user-detail');
+    let userNumber = localStorage.getItem('guestUser Number');
+
+    // If there's no user number in local storage, generate a new one
+    if (!userNumber) {
+        userNumber = generateUser Number();
+        localStorage.setItem('guestUser Number', userNumber);
+    }
+
+    // Display the user number
+    userDetailElement.textContent = `Guest_User_${userNumber}`;
+}
+
+// Call the function to display the user
+displayUser ();
         </script>
 <style>
 
