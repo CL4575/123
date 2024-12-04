@@ -58,7 +58,7 @@
                 <a href="#" onclick="changeIframeSource('https://louedogindustries.vercel.app/pencil.html')"><span class="material-symbols-outlined"><i class="fa-solid fa-pencil"></i></span>Add pencils</a>
             </li>
             <li>
-                <a href=""><span class="material-symbols-outlined"><i class="fa-solid fa-right-from-bracket"></i></span>Log-out</a>
+                <a href="logout.html"><span class="material-symbols-outlined"><i class="fa-solid fa-right-from-bracket"></i></span>Log-out</a>
             </li>
             
             <h4>
@@ -325,93 +325,6 @@ body {
      background-color: #23527c;
  }
 </style>
-    <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Password Form</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <h2>Password Management</h2>
-        <form id="passwordForm">
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Submit</button>
-        </form>
-        <div id="message"></div>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
-<style>
-    /* styles.css */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-}
-
-.container {
-    background: white;
-    padding: 20px;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-input {
-    display: block;
-    margin: 10px 0;
-    padding: 10px;
-    width: 90%;
-}
-
-button {
-    padding: 10px;
-    background: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
-
-button:hover {
-    background: #0056b3;
-}
-</style>
-<script>
-    // script.js
-document.getElementById('passwordForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-
-    const password = document.getElementById('password').value;
-    const containerElement = document.querySelector('.container');
-
-    // Check if the password already exists in local storage
-    const storedPassword = localStorage.getItem('userPassword');
-
-    if (!storedPassword) {
-        // New user, set password
-        localStorage.setItem('userPassword', password);
-        alert('Password set successfully for new user.');
-        // Hide the container since the password is set
-        containerElement.style.display = 'none';
-    } else {
-        // Existing user, check password
-        if (storedPassword === password) {
-            alert('Welcome back!');
-            // Hide the container since the password is correct
-            containerElement.style.display = 'none';
-        } else {
-            alert('Incorrect password. Please try again.');
-            // Do not hide the container
-        }
-    }
-});
-</script>
-
+  
 
 
