@@ -4,14 +4,14 @@
         <input type="text" id="username" value="CEO" readonly>
 
         <label for="password">Password:</label>
-        <input type="password" id="password" placeholder="Set your password" required>
+        <input type="password" id="password" placeholder="Enter your password" required>
 
         <button type="submit">Login</button>
     </form>
     <div id="message"></div>
 </div>
 <style>
-  .popup {
+    .popup {
     display: none; /* Hidden by default */
     position: fixed;
     left: 50%;
@@ -22,29 +22,30 @@
     padding: 20px;
     z-index: 1000;
 }
+
+#message {
+    margin-top: 10px;
+    color: red; /* Error message color */
+}
 </style>
 <script>
-  let isFirstLogin = true; // Flag to check if it's the first login
-let storedPassword = ""; // Variable to store the password
+    const correctUsername = "CEO";
+const correctPassword = "1234"; // Fixed password
+let isLoggedIn = false; // Flag to check if the user is logged in
 
 document.getElementById("loginForm").addEventListener("submit", function(event) {
     event.preventDefault(); // Prevent form submission
 
+    const usernameInput = document.getElementById("username").value;
     const passwordInput = document.getElementById("password").value;
 
-    if (isFirstLogin) {
-        // Set the password for the first time
-        storedPassword = passwordInput;
-        isFirstLogin = false; // Update the flag
-        document.getElementById("message").innerText = "Password set successfully! You can now log in.";
+    // Check if the username and password are correct
+    if (usernameInput === correctUsername && passwordInput === correctPassword) {
+        isLoggedIn = true; // Update the login status
+        document.getElementById("message").innerText = "Login successful!";
+        // Redirect to the home page or perform other actions
     } else {
-        // Check if the entered password matches the stored password
-        if (passwordInput === storedPassword) {
-            document.getElementById("message").innerText = "Login successful!";
-            // Redirect to the home page or perform other actions
-        } else {
-            document.getElementById("message").innerText = "Incorrect password. Please try again.";
-        }
+        document.getElementById("message").innerText = "Incorrect username or password. Please try again.";
     }
 });
 
