@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Add Employee</title>
+</head>
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center; /* Center the container horizontally */
+        }
+
+        .container {
+            width: 60%; /* Set the container width to 60% */
+            background: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1, h2 {
+            color: #333;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            background: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .fire-button {
+            background-color: #dc3545;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .fire-button:hover {
+            background-color: #c82333;
+        }
+    </style>
+<body>
+    <center>
+    <h1>Employee Add Form</h1> 
+    <form id="fireForm">
+        <label for="employeeName">Employee Name:</label>
+        <input type="text" id="employeeName" required>
+        <label for="position">Position:</label>
+        <input type="text" id="position" required>
+        <button type="submit">Add Employee</button>
+    </form>
+
+    <h2>Employee List</h2>
+    <ul id="employeeList"></ul>
+        </center>
+
+    <script>
+        // Function to save employee data to local storage
+        function saveEmployee(name, position) {
+            const employees = JSON.parse(localStorage.getItem('employees')) || [];
+            employees.push({ name, position });
+            localStorage.setItem('employees', JSON.stringify(employees));
+        }
+
+        // Function to remove an employee from local storage
+        function removeEmployee(index) {
+            const employees = JSON.parse(localStorage.getItem('employees')) || [];
+            employees.splice(index, 1); // Remove the employee at the specified index
+            localStorage.setItem('employees', JSON.stringify(employees));
+            displayEmployees(); // Update the displayed list
+        }
+
+        // Function to display employees from local storage
+        function displayEmployees() {
+            const employees = JSON.parse(localStorage.getItem('employees')) || [];
+            const employeeList = document.getElementById('employeeList');
+            employeeList.innerHTML = ''; // Clear the current list
+            employees.forEach((employee, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${employee.name} - ${employee.position} `;
+                
+                // Create a "Fire" button
+                const fireButton = document.createElement('button');
+                fireButton.textContent = 'Fire';
+                fireButton.onclick = () => removeEmployee(index); // Set the onclick event to remove the employee
+                
+                li.appendChild(fireButton); // Append the button to the list item
+                employeeList.appendChild(li); // Append the list item to the employee list
+            });
+        }
+
+        // Event listener for form submission
+        document.getElementById('fireForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the default form submission
+            const name = document.getElementById('employeeName').value; // Get the employee name
+            const position = document.getElementById('position').value; // Get the employee position
+            saveEmployee(name, position); // Save the employee to local storage
+            displayEmployees(); // Update the displayed list
+            this.reset(); // Reset the form fields
+        });
+
+        // Initial display of employees
+        displayEmployees(); // Show the employees when the page loads
+    </script>
+</body>
+</html>
