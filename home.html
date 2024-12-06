@@ -1,1 +1,37 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Pencils</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            position: relative; /* Allow positioning of the arrow */
+        }
+        .arrow {
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-bottom: 10px solid #000; /* Arrow color */
+            left: 50px; /* Adjust this value to position the arrow */
+            top: 20px; /* Adjust this value to position the arrow */
+            transform: translateX(-50%); /* Center the arrow */
+        }
+        .content {
+            margin-top: 50px; /* Space for the arrow */
+        }
+    </style>
+</head>
+<body>
+    <div class="arrow"></div>
+    <div class="content">
+        <h1>Add Pencils</h1>
+        <p>This is where you can add pencils to your inventory.</p>
+        <!-- Add your form or content here -->
+    </div>
+</body>
+</html>
