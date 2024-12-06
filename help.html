@@ -1,100 +1,55 @@
-<div id="loginPopup" class="popup">
-    <form id="loginForm">
-        <label for="username">Username:</label>
-        <input type="text" id="username" value="CEO" readonly>
-
-        <label for="password">Password:</label>
-        <input type="password" id="password" placeholder="Enter your password" required>
-
-        <button type="submit">Login</button>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Fire Form</title>
+</head>
+<body>
+    <h1>Add Fire Form</h1>
+    <form id="fireForm">
+        <label for="employeeName">Employee Name:</label>
+        <input type="text" id="employeeName" required>
+        <label for="position">Position:</label>
+        <input type="text" id="position" required>
+        <button type="submit">Add Fire</button>
     </form>
-    <div id="message"></div>
-</div>
-<style>
-  body {
-    font-family: Arial, sans-serif; /* Set a default font for the body */
-}
 
-.popup {
-    display: none; /* Hidden by default */
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid #ccc;
-    background-color: white;
-    padding: 20px;
-    z-index: 1000;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a shadow for better visibility */
-}
+    <h2>Employee List</h2>
+    <ul id="employeeList"></ul>
 
-label {
-    display: block; /* Make labels block elements */
-    margin-bottom: 5px; /* Add some space below labels */
-}
+    <script>
+        // Function to save employee data to local storage
+        function saveEmployee(name, position) {
+            const employees = JSON.parse(localStorage.getItem('employees')) || [];
+            employees.push({ name, position });
+            localStorage.setItem('employees', JSON.stringify(employees));
+        }
 
-input[type="text"],
-input[type="password"] {
-    width: 100%; /* Full width */
-    padding: 10px; /* Add padding for better appearance */
-    margin-bottom: 10px; /* Space between input fields */
-    border: 2px solid #007BFF; /* Blue border */
-    border-radius: 4px; /* Rounded corners */
-    box-sizing: border-box; /* Include padding and border in element's total width and height */
-}
+        // Function to display employees from local storage
+        function displayEmployees() {
+            const employees = JSON.parse(localStorage.getItem('employees')) || [];
+            const employeeList = document.getElementById('employeeList');
+            employeeList.innerHTML = '';
+            employees.forEach(employee => {
+                const li = document.createElement('li');
+                li.textContent = `${employee.name} - ${employee.position}`;
+                employeeList.appendChild(li);
+            });
+        }
 
-input[type="text"]:focus,
-input[type="password"]:focus {
-    border-color: #0056b3; /* Darker blue on focus */
-    outline: none; /* Remove default outline */
-}
+        // Event listener for form submission
+        document.getElementById('fireForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('employeeName').value;
+            const position = document.getElementById('position').value;
+            saveEmployee(name, position);
+            displayEmployees();
+            this.reset(); // Reset the form fields
+        });
 
-button {
-    background-color: #007BFF; /* Blue background */
-    color: white; /* White text */
-    padding: 10px; /* Add padding */
-    border: none; /* Remove border */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Change cursor to pointer */
-    width: 100%; /* Full width */
-}
-
-button:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
-
-#message {
-    margin-top: 10px;
-    color: red; /* Error message color */
-}
-</style>
-<script>
-const correctUsername = "CEO";
-const correctPassword = "1234"; // Fixed password
-let isLoggedIn = false; // Flag to check if the user is logged in
-
-document.getElementById("loginForm").addEventListener("submit", function(event) { 
-    event.preventDefault(); // Prevent form submission
-
-    const usernameInput = document.getElementById("username").value;
-    const passwordInput = document.getElementById("password").value;
-
-    // Check if the username and password are correct
-    if (usernameInput === correctUsername && passwordInput === correctPassword) {
-        isLoggedIn = true; // Update the login status
-        document.getElementById("message").innerText = "Login successful!";
-        
-        // Hide the popup
-        document.getElementById("loginPopup").style.display = "none";
-        
-        // You can also perform other actions here, like redirecting the user
-    } else {
-        document.getElementById("message").innerText = "Incorrect username or password. Please try again.";
-    }
-});
-
-// Function to show the popup
-function showLoginPopup() {
-    document.getElementById("loginPopup").style.display = "block";
-}
-</script>
+        // Initial display of employees
+        displayEmployees();
+    </script>
+</body>
+</html>
