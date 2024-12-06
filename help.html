@@ -12,7 +12,7 @@
         <input type="text" id="employeeName" required>
         <label for="position">Position:</label>
         <input type="text" id="position" required>
-        <button type="submit">Add Fire</button>
+        <button type="submit">Add Employee</button>
     </form>
 
     <h2>Employee List</h2>
@@ -26,15 +26,30 @@
             localStorage.setItem('employees', JSON.stringify(employees));
         }
 
+        // Function to remove an employee from local storage
+        function removeEmployee(index) {
+            const employees = JSON.parse(localStorage.getItem('employees')) || [];
+            employees.splice(index, 1); // Remove the employee at the specified index
+            localStorage.setItem('employees', JSON.stringify(employees));
+            displayEmployees(); // Update the displayed list
+        }
+
         // Function to display employees from local storage
         function displayEmployees() {
             const employees = JSON.parse(localStorage.getItem('employees')) || [];
             const employeeList = document.getElementById('employeeList');
             employeeList.innerHTML = '';
-            employees.forEach(employee => {
+            employees.forEach((employee, index) => {
                 const li = document.createElement('li');
-                li.textContent = `${employee.name} - ${employee.position}`;
-                employeeList.appendChild(li);
+                li.textContent = `${employee.name} - ${employee.position} `;
+                
+                // Create a "Fire" button
+                const fireButton = document.createElement('button');
+                fireButton.textContent = 'Fire';
+                fireButton.onclick = () => removeEmployee(index); // Set the onclick event to remove the employee
+                
+                li.appendChild(fireButton); // Append the button to the list item
+                employeeList.appendChild(li); // Append the list item to the employee list
             });
         }
 
