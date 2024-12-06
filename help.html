@@ -6,6 +6,7 @@
     <title>Add Fire Form</title>
 </head>
 <body>
+    <center>
     <h1>Add Fire Form</h1>
     <form id="fireForm">
         <label for="employeeName">Employee Name:</label>
@@ -17,6 +18,7 @@
 
     <h2>Employee List</h2>
     <ul id="employeeList"></ul>
+        </center>
 
     <script>
         // Function to save employee data to local storage
@@ -38,7 +40,7 @@
         function displayEmployees() {
             const employees = JSON.parse(localStorage.getItem('employees')) || [];
             const employeeList = document.getElementById('employeeList');
-            employeeList.innerHTML = '';
+            employeeList.innerHTML = ''; // Clear the current list
             employees.forEach((employee, index) => {
                 const li = document.createElement('li');
                 li.textContent = `${employee.name} - ${employee.position} `;
@@ -55,16 +57,16 @@
 
         // Event listener for form submission
         document.getElementById('fireForm').addEventListener('submit', function(event) {
-            event.preventDefault();
-            const name = document.getElementById('employeeName').value;
-            const position = document.getElementById('position').value;
-            saveEmployee(name, position);
-            displayEmployees();
+            event.preventDefault(); // Prevent the default form submission
+            const name = document.getElementById('employeeName').value; // Get the employee name
+            const position = document.getElementById('position').value; // Get the employee position
+            saveEmployee(name, position); // Save the employee to local storage
+            displayEmployees(); // Update the displayed list
             this.reset(); // Reset the form fields
         });
 
         // Initial display of employees
-        displayEmployees();
+        displayEmployees(); // Show the employees when the page loads
     </script>
 </body>
 </html>
