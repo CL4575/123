@@ -11,25 +11,7 @@
     <div id="message"></div>
 </div>
 <style>
-    .popup {
-    display: none; /* Hidden by default */
-    position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    border: 1px solid #ccc;
-    background-color: white;
-    padding: 20px;
-    z-index: 1000;
-}
-
-#message {
-    margin-top: 10px;
-    color: red; /* Error message color */
-}
-</style>
-<script>
- body {
+  body {
     font-family: Arial, sans-serif; /* Set a default font for the body */
 }
 
@@ -84,5 +66,35 @@ button:hover {
 #message {
     margin-top: 10px;
     color: red; /* Error message color */
+}
+</style>
+<script>
+const correctUsername = "CEO";
+const correctPassword = "1234"; // Fixed password
+let isLoggedIn = false; // Flag to check if the user is logged in
+
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent form submission
+
+    const usernameInput = document.getElementById("username").value;
+    const passwordInput = document.getElementById("password").value;
+
+    // Check if the username and password are correct
+    if (usernameInput === correctUsername && passwordInput === correctPassword) {
+        isLoggedIn = true; // Update the login status
+        document.getElementById("message").innerText = "Login successful!";
+        
+        // Hide the popup
+        document.getElementById("loginPopup").style.display = "none";
+        
+        // You can also perform other actions here, like redirecting the user
+    } else {
+        document.getElementById("message").innerText = "Incorrect username or password. Please try again.";
+    }
+});
+
+// Function to show the popup
+function showLoginPopup() {
+    document.getElementById("loginPopup").style.display = "block";
 }
 </script>
