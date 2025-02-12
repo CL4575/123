@@ -17,15 +17,27 @@
             height: auto; /* Maintain aspect ratio */
             margin-bottom: 20px; /* Add space below the logo */
         }
-        hr {
-            display: none; /* Hide any horizontal lines */
-        }
     </style>
+    <script>
+        // JavaScript to determine the parent directory and create the link
+        window.onload = function() {
+            // Get the current URL path
+            const pathArray = window.location.pathname.split('/');
+            // Check if the path has at least 3 segments (e.g., /123/hjhk)
+            if (pathArray.length >= 3) {
+                // Construct the parent directory URL
+                const parentDir = pathArray[1]; // This will be '123' or 'abc'
+                const redirectUrl = `/${parentDir}/`;
+                // Set the link in the HTML
+                document.getElementById('redirect-link').href = redirectUrl;
+            }
+        };
+    </script>
 </head>
 <body>
     <img src="https://i.ibb.co/hHYBbk1/Capture.png" alt="Logo" class="logo" />
     <h1>404 - Page Not Found</h1>
     <p>Oops! The page you are looking for does not exist.</p>
-    <p><a href="/" style="color: white; text-decoration: underline;">Go back to the homepage</a></p>
+    <p><a id="redirect-link" style="color: white; text-decoration: underline;">Go back to the homepage</a></p>
 </body>
 </html>
